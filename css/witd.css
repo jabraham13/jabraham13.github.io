@@ -6,7 +6,14 @@
 
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC);
 
-h1, h2, h3 {color: #660066}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+canvas {
+    border: #660066 solid 1px;
+}
 
 body {
     margin: auto;
@@ -15,13 +22,10 @@ body {
     font-size: 1.5em
 }
 
+h1, h2, h3 {color: #660066}
+
 pre {
     font-size: 0.6em
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
 }
 
 #left-menu>div {
