@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Scratch Space</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/witd.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function () {
+                var canvas = $("#canvas01").get(0);
+                var ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(95, 50, 40, 0, 2*Math.PI);
+                ctx.stroke();
+            });
+        </script>
+        <link href="css/witd.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h1>Scratch Space!</h1>
+        Canvas elements!
+        <div>
+            <canvas id="canvas01"  width="842" height="595"></canvas>
+        </div>
+    </body>
+</html>
