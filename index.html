@@ -1,39 +1,70 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
     <head>
-        <title>Working in the Dark</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="js/jquery.js" type="text/javascript"></script>
-        <script src="js/witd.js" type="text/javascript"></script>
-        <link href="css/witd.css" rel="stylesheet" type="text/css"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Julie Abraham</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/bootstrap.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Local CSS -->
+        <link href="css/jla.css" rel="stylesheet">
+        <style>
+            main {
+                padding: 0 25vw;
+            }
+
+        </style>
+    </head>
+
+    <body class="text-center">
+        <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <h3 class="nav-brand">Julie Abraham</h3>
+                    <nav class="nav-main nav justify-content-center">
+                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                        <a class="nav-link" href="cv.html">CV</a>
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                        <div class="nav-link" id="faq-button">FAQ</div>
+                        <a class="nav-link" href="about.html">About Me</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </nav>
+                </div>
+            </header>
+            <main class="index" id="main">
+                <img src="images/icon.png" alt=""/>
+                <h1>Julie Abraham</h1>
+                <p class="lead">Software problem solver with experience
+                    in a range of industries including medical imaging, machine 
+                    learning, data science, web development and telecoms.</p>
+                <p>
+                    <a href="portfolio.html" class="btn-primary">Check Out My Work</a>
+                </p>
+
+            </main>
+            <footer class="mt-auto">
+
+                <div>
+                    <p>&copy Julie Abraham 2019.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <!-- local JavaScript -->
+        <script src="js/jla.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
                 loadIndexPage();
             });
-        </script>    
-    </head>
-    <body>
-        <div id="left">
-            <img src="images/avatar.png" alt="Avatar"/>
-            <nav id="left-menu">
-                <div id="home-button">Home</div>                
-                <div id="about-button">About</div>
-                <div id="work-button">Work</div>
-                <div id="fun-button">Fun</div>
-                <div id="code-button">Code</div>
-            </nav>
-        </div>
-        <div id="right">
-            <h1>Working in the Dark</h1>
-            <div id="main">
-                <p>
-                    "We work in the dark - we do what we can - we give what we have. 
-                    Our doubt is our passion, and our passion is our task. The rest 
-                    is the madness of art.” - Henry James
-                </p>
-            </div>
-        </div>
+        </script>  
+
     </body>
 </html>
