@@ -3,9 +3,10 @@
 */
 
 function loadIndexPage() {
-    $("#faq-button").click(function(){
-//        $("#main").append("<p>Appended new HTML!<p>");
-//        $("#main").load("Some brand new text");
-        $("#main").load("faq.html");
+    $("#about").click(function(){
+        $("#main").load("about.html");
+    });
+    $("#contact").click(function(){
+        $("#main").load("contact.html");
     });
 }
