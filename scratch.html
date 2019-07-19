@@ -13,9 +13,15 @@
             $(document).ready(function () {
                 var canvas = $("#canvas01").get(0);
                 var ctx = canvas.getContext("2d");
-                ctx.beginPath();
-                ctx.arc(95, 50, 40, 0, 2*Math.PI);
-                ctx.stroke();
+                
+                ctx.strokeStyle = "#000000";
+                ctx.strokeRect(25, 25, 70, 70);
+                ctx.strokeRect(25, 100, 70, 70);
+                ctx.strokeRect(25, 175, 70, 70);
+                ctx.strokeRect(25, 250, 70, 70);
+                ctx.strokeRect(25, 325, 70, 70);
+                ctx.strokeRect(25, 400, 70, 70);
+                ctx.strokeRect(25, 475, 70, 70);
             });
         </script>
         <link href="css/witd.css" rel="stylesheet" type="text/css"/>
@@ -24,7 +30,7 @@
         <h1>Scratch Space!</h1>
         Canvas elements!
         <div>
-            <canvas id="canvas01"  width="842" height="595"></canvas>
+            <canvas id="canvas01"  width="842" height="575"></canvas>
         </div>
     </body>
 </html>
