@@ -44,16 +44,18 @@ img {
     font-weight: 700;
     color: #660066;
     border-bottom: .25rem solid transparent;
+    cursor: pointer;
 }
 
 .nav-link:hover, .nav-link:focus {
     border-bottom-color: rgba(255, 255, 255, .5);
+    text-shadow: 2px 2px 10px #fff;
+
 }
 
 .active {
-    color: #fff;
     text-shadow: 2px 2px 10px #660066;
-    border-bottom-color: #fff;
+    border-bottom-color: #660066;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:focus {
