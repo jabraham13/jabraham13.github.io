@@ -48,6 +48,10 @@ img {
     max-width: 100%;
 }
 
+footer {
+    font-size: .7em;
+}
+
 .nav-link + .nav-link {
     margin-left: 1rem;
 }
@@ -94,5 +98,4 @@ img {
 .btn-secondary:hover {
     opacity: 0.7;
 }
-
 
