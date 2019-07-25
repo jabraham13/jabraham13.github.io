@@ -27,6 +27,10 @@ a, a:hover {
     color: inherit;
 }
 
+embed {
+    border: none;
+}
+
 footer {
     font-size: .7em;
 }
