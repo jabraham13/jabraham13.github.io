@@ -9,15 +9,8 @@
     .nav-main {float: right;}
 }
 
-main {padding: 0 12vw;}
-
-@media screen and (max-width: 48em) {
-    main {padding: 0 0;}
-}
-
 html, body {
     height: 100%;
-    color: #333;
     font-family: 'Amatic SC', fantasy;
     font-size: 1.25em;
     background-color: #fcf7fc;
@@ -27,15 +20,11 @@ a, a:hover {
     color: inherit;
 }
 
-embed {
-    border: none;
-}
-
 footer {
     font-size: .7em;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
     color: #660066;
 }
 
@@ -46,7 +35,6 @@ img {
 .nav-link + .nav-link {
     margin-left: 1rem;
 }
-
 
 .active {
     text-shadow: 2px 2px 10px #660066;
@@ -63,6 +51,7 @@ img {
     border-width: 0;
 }
 .btn-primary:hover {
+    cursor: pointer;
     opacity: 0.7;
 }
 
@@ -74,11 +63,8 @@ img {
     border-width: 0;
 }
 .btn-secondary:hover {
+    cursor: pointer;
     opacity: 0.7;
-}
-
-.card-title {
-    font-weight: 1000;
 }
 
 .jumbotron, .jumbotron h1 {
