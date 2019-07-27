@@ -14,28 +14,17 @@
         <!-- Local CSS -->
         <link href="css/jla.css" rel="stylesheet">
         <style>
-            object {
-                border: solid black;
+            pre {
+                color: purple;
             }
         </style>
     </head>
 
-    <body class="text-center">
-        <!--<div class="d-flex w-100 h-100 p-3 mx-auto flex-column">-->
-        <div class="d-flex w-100 h-100 p-3 flex-column">
-            <header class="mb-auto">
-            </header>
-            <main id="main" class="p-5">
-                <img src="images/icon.png" alt=""/>
-                <h1>Style</h1>
-                <div id="book" class="w-100 border">
-                    <object type="text/html" data="files/205-h.html"></object>
-                </div>
-            </main>
-            <footer class="mt-auto">
-                <p>&copy; Julie Abraham 2019.</p>
+    <body>
 
-            </footer>
+        <div id="btn-load-book" class="btn btn-primary">Load Book</div>
+        <div id="btn-change-style" class="btn btn-primary">Change Style</div>
+        <div id="book" class="w-100 border">
         </div>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -46,8 +35,9 @@
         <script src="js/jla.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
-//                $("#book").load("files/205-h.html");
+                loadStylePage();
             });
         </script>  
+
     </body>
 </html>
