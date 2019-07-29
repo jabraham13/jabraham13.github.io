@@ -56,21 +56,24 @@ function loadStylePage() {
         $("#book").css({'font-family': 'sans-serif'});
     });
     $("#theme-original").click(function () {
-        $("#book").css({
-            'color': 'black',
-            'background-color': '#fcf7fc'
-        });
+        var fileref = document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", "css/original.css");
+        $("head").append(fileref);
     });
     $("#theme-dark").click(function () {
-        $("#book").css({
-            'color': 'white',
-            'background-color': 'black'
-        });
+        var fileref = document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", "css/dark.css");
+        $("head").append(fileref);
     });
     $("#theme-light").click(function () {
-        $("#book").css({
-            'color': 'black',
-            'background-color': 'white'
-        });
+        var fileref = document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", "css/light.css");
+        $("head").append(fileref);
     });
 }
