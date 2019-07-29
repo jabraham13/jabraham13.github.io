@@ -36,13 +36,41 @@ function loadPortfolioPage() {
 }
 
 function loadStylePage() {
-    $("#btn-load-book").click(function () {
-        $("#book").load("files/205-h.html");
+    $("#book").load("files/205-h.html");
+    $("#btn-small").click(function () {
+        $("#book").css({'font-size': '50%'});
     });
-    $("#btn-change-style").click(function () {
+    $("#btn-default").click(function () {
+        $("#book").css({'font-size': '100%'});
+    });
+    $("#btn-large").click(function () {
+        $("#book").css({'font-size': '150%'});
+    });
+    $("#font-original").click(function () {
+        $("#book").css({'font-family': 'Amatic SC'});
+    });
+    $("#font-serif").click(function () {
+        $("#book").css({'font-family': 'serif'});
+    });
+    $("#font-sans").click(function () {
+        $("#book").css({'font-family': 'sans-serif'});
+    });
+    $("#theme-original").click(function () {
         $("#book").css({
             'color': 'black',
-            'font-family' : 'serif',
-            'font-size': '100%'});
+            'background-color': '#fcf7fc'
+        });
+    });
+    $("#theme-dark").click(function () {
+        $("#book").css({
+            'color': 'white',
+            'background-color': 'black'
+        });
+    });
+    $("#theme-light").click(function () {
+        $("#book").css({
+            'color': 'black',
+            'background-color': 'white'
+        });
     });
 }
