@@ -22,13 +22,13 @@
 
     <body>
         <div class="btn-toolbar fixed-top justify-content-center p-2" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group mr-1 mr-md-3 my-1" role="group" aria-label="Font size group">
+            <div id="btnGroupSize" class="btn-group mr-1 mr-md-3 my-1" role="group" aria-label="Font size group">
                 <button type="button" id="btn-small" class="btn btn-secondary"><small>small</small></button>
-                <button type="button" id="btn-default" class="btn btn-secondary">medium</button>
+                <button type="button" id="btn-default" class="btn btn-secondary active">medium</button>
                 <button type="button" id="btn-large" class="btn btn-secondary"><big>large</big></button>
             </div>
-            <div class="btn-group mr-1 mr-md-3 my-1" role="group" aria-label="Font family group">
-                <button type="button"  id="font-original" class="btn btn-secondary">original font</button>            
+            <div id="btnGroupFamily" class="btn-group mr-1 mr-md-3 my-1" role="group" aria-label="Font family group">
+                <button type="button"  id="font-original" class="btn btn-secondary active">original font</button>            
                 <button type="button"  id="font-serif" class="btn btn-secondary">serif</button>            
                 <button type="button"  id="font-sans" class="btn btn-secondary">sans</button>            
             </div>
@@ -38,7 +38,7 @@
                         theme
                     </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupTheme">
-                        <button type="button"  id="theme-original" class="dropdown-item">original</button>
+                        <button type="button"  id="theme-original" class="dropdown-item active">original</button>
                         <button type="button"  id="theme-dark" class="dropdown-item">dark</button>
                         <button type="button"  id="theme-light" class="dropdown-item">light</button>
                     </div>

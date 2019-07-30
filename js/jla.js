@@ -38,24 +38,38 @@ function loadPortfolioPage() {
 function loadStylePage() {
     $("#book").load("files/205-h.html");
     $("#btn-small").click(function () {
+        $("#btnGroupSize .active").removeClass("active");
+        $("#btn-small").addClass("active").blur();
         $("#book").css({'font-size': '50%'});
     });
     $("#btn-default").click(function () {
+        $("#btnGroupSize .active").removeClass("active");
+        $("#btn-default").addClass("active").blur();
         $("#book").css({'font-size': '100%'});
     });
     $("#btn-large").click(function () {
+        $("#btnGroupSize .active").removeClass("active");
+        $("#btn-large").addClass("active").blur();
         $("#book").css({'font-size': '150%'});
     });
     $("#font-original").click(function () {
+        $("#btnGroupFamily .active").removeClass("active");
+        $("#font-original").addClass("active").blur();
         $("#book").css({'font-family': 'Amatic SC'});
     });
     $("#font-serif").click(function () {
+        $("#btnGroupFamily .active").removeClass("active");
+        $("#font-serif").addClass("active").blur();
         $("#book").css({'font-family': 'serif'});
     });
     $("#font-sans").click(function () {
+        $("#btnGroupFamily .active").removeClass("active");
+        $("#font-sans").addClass("active").blur();
         $("#book").css({'font-family': 'sans-serif'});
     });
     $("#theme-original").click(function () {
+        $("#btnGroupTheme .active").removeClass("active");
+        $("#theme-original").addClass("active");
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
@@ -63,6 +77,8 @@ function loadStylePage() {
         $("head").append(fileref);
     });
     $("#theme-dark").click(function () {
+        $("#btnGroupTheme .active").removeClass("active");
+        $("#theme-dark").addClass("active");
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
@@ -70,6 +86,8 @@ function loadStylePage() {
         $("head").append(fileref);
     });
     $("#theme-light").click(function () {
+        $("#btnGroupTheme .active").removeClass("active");
+        $("#theme-light").addClass("active");
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
