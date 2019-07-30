@@ -23,7 +23,7 @@
             .card-img-top, img.col-md-4 {
                 height: 225px;
                 object-fit: cover;
-                object-position: 100% 0;
+                object-position: 0 0;
             }
             .under-construction {
                 visibility: hidden;
@@ -34,7 +34,7 @@
         <section class="text-center">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container w-50">
-                    <h1>Julie Abraham Portfolio</h1>
+                    <h1><a href="index.html">Julie Abraham</a><br>Portfolio</h1>
                     <p class="text-justify">
                         "We work in the dark - we do what we can - we give what we have. 
                         Our doubt is our passion, and our passion is our task. The rest 
@@ -82,12 +82,12 @@
 
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#660066"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                        <img class="card-img-top" src="images/cpp.png" alt="C++ Notes" height="225"/>
                         <div class="card-body">
                             <a href="cpp.html" class="stretched-link"></a>
                             <h3 class="card-title">C++ Notes</h3>
                             <p class="card-text">
-                                To remind me of the correct syntax for C++ 
+                                A syntax refresher for 
                                 when I've been programming in another 
                                 language for a while.
                             </p>
@@ -244,9 +244,10 @@
             </p>                
 
         </footer>
-        <script src="js/jquery-3.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-        <script src="js/bootstrap.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <!-- local JavaScript -->
         <script src="js/jla.js" type="text/javascript"></script>
         <script>

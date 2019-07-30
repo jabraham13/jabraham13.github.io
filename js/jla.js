@@ -43,16 +43,19 @@ function loadStylePage() {
         $("#btnGroupFamily .active").removeClass("active");
         $("#font-original").addClass("active").blur();
         $("#book").css({'font-family': 'Amatic SC'});
+        $("#book pre").css({'font-family': 'Courier New'});
     });
     $("#font-serif").click(function () {
         $("#btnGroupFamily .active").removeClass("active");
         $("#font-serif").addClass("active").blur();
         $("#book").css({'font-family': 'serif'});
+        $("#book pre").css({'font-family': 'Courier New'});
     });
     $("#font-sans").click(function () {
         $("#btnGroupFamily .active").removeClass("active");
         $("#font-sans").addClass("active").blur();
         $("#book").css({'font-family': 'sans-serif'});
+        $("#book pre").css({'font-family': 'Consolas'});
     });
     $("#theme-original").click(function () {
         $("#btnGroupTheme .active").removeClass("active");
@@ -82,3 +85,9 @@ function loadStylePage() {
         $("head").append(fileref);
     });
 }
+
+function loadCPPPage() {
+    $("#code").load("files/main.cpp");
+    $.getScript( "js/prism.js");
+}
+

@@ -39,6 +39,7 @@ pre {
     white-space: -o-pre-wrap;
     word-wrap: break-word;
     text-align: left;
+    font-family: 'Courier New'
 }
 
 .nav-link + .nav-link {
