@@ -1,0 +1,674 @@
+---
+title: "R Programming"
+author: "Julie Abraham"
+date: "September 5, 2015"
+output:
+  html_document:
+    highlight: pygments
+    theme: cosmo
+    toc: yes
+  pdf_document:
+    highlight: tango
+  word_document:
+    highlight: tango
+    reference_docx: Elegant.docx
+geometry: margin=0.5in
+number_sections: yes
+fontsize: 32pt
+fontfamily: bookman
+---
+
+***
+*Everything that exists is an object. Everything that happens is a function call - John Chambers*  
+
+***
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(error = TRUE)
+
+options(stringsAsFactors = FALSE)
+
+library(caret)
+library(gmodels)
+library(knitr)
+library(plyr)
+library(reshape2)
+library(vcd)
+library(xtable)
+
+```
+
+---
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+---
+
+## R Objects
+All data in R is stored as an object. A **vector** is the most fundamental data type in R. Vectors typically contain objects of the same data type but there is a special type of vector, **the List**, which can be used to store objects of different types. Single data values are stored in vectors of length one, note that **R starts indexing at one not zero**. Empty objects can be created using their constructor function.
+
+`vector()` creates an empty object of type vector  
+`list()` creates an empty object of type list  
+`character()` creates an empty object of type character  
+`numeric()` creates an empty object of type numeric  
+`integer()` creates an empty object of type integer  
+`complex()` creates an empty object of type complex  
+`logical()` creates an empty object of type logical  
+`attributes()` returns the attributes of an object such as it’s names, dimensions, class etc.  
+
+When different objects are combined in a vector that isn’t explicitly declared as a list coercion occurs so that every element in the vector becomes the same class of object. Coercion can be forced using the `as.*` function.
+
+`as.character(v)` forces the variable v to be a character variable  
+`as.numeric(v)` forces the variable v to be a numeric variable  
+`as.integer(v)` forces the variable v to be a integer variable  
+`as.complex(v)` forces the variable v to be a complex variable  
+`as.logical(v)` forces the variable v to be a logical variable  
+
+## Numbers
+
+Numbers in R are treated as numeric objects. Give a number the L suffix if you want to explicitly make it an integer.
+
+`NaN` represents an undefined value, usually resulting from a failed arithmetic operation (not a number)  
+`NA` represents a missing value (not available).  
+`Inf` represents infinity and can be used in calculations, 1⁄Inf  will return 0  
+
+## Matrices
+
+Matrices are two dimensional vectors containing data of the same type. Matrices in R are constructed column by column as opposed to row by row. Matrices can be constructed explicitly using `matrix()` or by adding a dimension to an existing vector.
+
+`matrix(nrow=x, ncol=y)` creates a matrix with x rows and y columns  
+`dim(m) <- c(x, y)` creates a matrix with x rows and y columns from the vector m.  
+
+Matrices can also be created, or enlarged, by adding vectors using `cbind()` and `rbind()`  
+
+`cbind(x, y)` combines x and y into a matrix column by column  
+`rbind(x, y)` combines x and y into a matrix row by row  
+
+*Note it is possible to create structures with more than two dimensions using the array() function, in fact the array() function is the more general constructor and in fact a two dimensional array is also an object of class matrix.*
+
+`array(dim=c(x, y, z))` creates a three dimensional array with dimensions of length x, y and z
+
+## Vectorized Operations
+
+Most operations in R are vectorized meaning they are carried out element by element. To get true matrix operations a special set of matrix operators must be used. 
+```{R}
+x <- matrix(1:4, 2, 2); y <- matrix(rep(10, 4), 2, 2)
+x * y ## element-wise multiplication
+x %*% y ## true matrix multiplication
+```
+
+## Factors
+Factors are used for storing categorical data. They are stored internally as a vector of integers with corresponding character labels known as levels. This allows for the data to consist of useful information, such as “yes” or “no” values whilst being store in a manner more suitable for mathematical analysis. It is of particular importance when modelling data to be able to distinguish between categorical data and continuous value data.
+
+`factor(c(“yes”, “yes”, “no”)` creates a factor consisting of values “yes” or “no”, it is stored internally as a numeric vector with values (2, 2, 1) and levels “no” and “yes”. The order of the levels can be set using the `levels` argument to the function.
+
+```{R}
+f <- factor(c("yes", "yes", "no"), levels = c("yes", "no"))
+str(f)
+```
+
+## Data Frames
+Data frames are used to store tabular data, they are a two dimensional form of the list and can be used to store different data types. A data frame can be thought of as a series of lists, all having the same length, arranged in columns.
+
+`data.frame()` creates a data frame  
+`read.table()` creates a data frame from a file  
+`read.csv()` creates a data frame from a .csv file  
+`data.matrix()` converts a data frame to a matrix using coercion  
+
+### Strings in Data Frames
+
+Sometimes character strings can be mistakenly converted to factors when they are added or read into a data frame. To avoid this use the `stringsAsFactors = FALSE` option.
+
+```{R}
+
+df <- data.frame(val1 = as.character(), val2 = as.integer())
+str(df)
+
+options(stringsAsFactors = FALSE) 
+df <- data.frame(val1 = as.character(), val2 = as.integer())
+str(df)
+
+```
+
+
+
+## Names
+`names()` adds names to an object
+
+## Reading and Writing Data
+`read.table()` for reading tabular data  
+`read.csv()` for reading tabular data  
+`readLines()` for reading lines of a text file  
+`source()` for reading in R code files (inverse of dump)  
+`dget()` for reading in R code files (inverse of dput)  
+`load()` for reading in saved objects  
+`readRDS()` reads a single object from a file. Can be assigned to a new object  
+`unserialize()` for reading single R objects in binary form  
+`write.table()` for writing tabular data  
+`writeLines()` for writing tabular data  
+`dump()` writes a vector of an R object as text such that it can be recreated using `source()`  
+`dput()` writes an individual R object as text  
+`save()` writes an external representation of R objects to the specified file (usually `*.rda`)  
+`saveRDS()` saves a single object to a file (usually *.rds) in a format that allows it be read back into an object with a different name than the original  
+`serialize()` writes binary data  
+`file()` opens a connection to a file  
+`close()` closes a connection  
+`gzfile()` opens a connection to a file compressed with gzip  
+`bzfile()` opens a connection to a file compressed with bzip2  
+`url()` opens a connection to a webpage  
+`list.files()` produces a character vector of the names of files or directories in the named directory  
+`file.path(…)` constructs the path to a file from the arguments in a platform-independent way  
+`file.create(filename)` creates files if they do not already exist and truncates them if they do  
+`file.exists(filenames)` returns a logical vector indicating whether the files named by its argument exist  
+`file.info(filenames)` extracts information about files on the user's file systems  
+`file.rename(from, to)` attempts to rename files  
+`dir.create(path)`creates the last element of the path, unless recursive = TRUE  
+`unlink(x)` deletes the file(s) or directories specified by x.  
+`data(…)` loads specified data sets, or list the available data sets. Currently, four formats of data files are supported:   
+
+1. files ending `.R` or `.r` are `source()`ed in, with the R working directory changed temporarily to the directory containing the respective file. (data ensures that the utils package is attached, in case it had been run via `utils::data`.) 
+2. files ending `.RData` or `.rda` are `load()`ed. 
+3. files ending `.tab`, `.txt` or ‘.TXT’ are read using `read.table(..., header = TRUE)`, and hence result in a data frame. 
+4. files ending `.csv` or `.CSV` are read using `read.table(..., header = TRUE, sep = ";")`, and also result in a data frame.
+
+### Handling File Names
+
+```{r}
+basename("C:/dir1/dir2/file")
+dirname("C:/dir1/dir2/file")
+```
+
+
+## Subsetting
+`[` always returns an object of the same class as the original; can be used to select more than one element (there is one exception)  
+`[[` is used to extract elements of a list or a data frame; it can only be used to extract a single element and the class of the returned object will not necessarily be a list or data frame  
+`$` is used to extract elements of a list or data frame by name; semantics are similar to that of `[[`.  
+
+Partial matching of names is allowed with `[[` and `$`.
+
+## Removing NA Values
+`is.na(x)` returns an array of logical values where x is `NA`. This can be used to remove `NA` values by subsetting: 
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+bad <- is.na(x)
+x[!bad]
+```
+
+`complete.cases()`returns an array of logical values which can also be used to remove `NA` values by subsetting
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+good <- complete.cases(x)
+x[good]
+```
+
+## Functions
+Functions are created using a call to `function()`. Functions are objects and can be passed as arguments to other functions or nested within other functions. The default return value of a function is the last expression evaluated in the body of the function.
+
+```{r}
+f <- function(argument) {
+  ## Do something interesting
+  argument;
+}
+
+f(x)
+```
+
+Functions have named arguments which can have default values. The formal arguments are the arguments included in the function definition. The `formals()` function returns a list of all the formal arguments of a function. Not every function call in R makes use of all the formal arguments. Function arguments can be missing or might have default values.
+
+R functions arguments can be matched by their position or by their name.
+
+Function arguments can also be partially matched. The order of operations when given an argument is
+
+1. Check for exact match for a named argument
+2. Check for a partial match
+3. Check for a positional match
+
+Arguments to functions are evaluated lazily, so they are evaluated only as needed.
+
+### User Defined Binary Functions
+User-defined binary operators have the following syntax:
+
+`%[whatever]%`
+
+*where [whatever] represents any valid variable name. An example implementation of a binary operator that multiplies two numbers and then adds one to the product is below:*
+```{r}
+"%mult_add_one%" <- function(left, right){ ## Notice the quotation marks!
+  left * right + 1
+}
+
+3 %mult_add_one% 5
+```
+
+## Control Structures
+### if Statement
+```{r}
+ifStatement <- function(arg1, arg2) {
+  if(arg1) {
+    "First is true"
+  } else if(arg2) {
+    "Second is true"
+  } else {
+    "Neither are true"
+  }
+}
+```
+
+
+The body of an if statement can be assigned to a variable:
+```{r}
+x <- 5
+y <- if(x > 3) {10} else {0}
+y
+```
+
+
+
+### for Loop
+```{r}
+varRange<-c(1:10)
+index<-1
+for(index in varRange) {
+  print(index)
+  index <- index + 1
+}
+```
+
+### while Loop
+```{r}
+index <- 1
+while(index <= 10) {
+  print(index);
+  index <- index + 1;
+}
+```
+
+Beware of creating an infinite loop.
+
+### repeat Statement
+```{r}
+index <- 1
+repeat {
+  if (index <=10) {
+    print(index);
+    index <- index + 1;
+  } else {
+    break;
+  }
+}
+```
+
+The only way to break out of a repeat loop is with a break statement.
+
+### next, return Statements
+`next` is used to skip an iteration of a loop  
+`return` is used to exit a function and return a given value
+
+## The “…” Argument
+The `...` argument indicates a variable number of arguments that are usually passed on to other functions.
+
+`...` is often used when extending another function to avoid copying the entire argument list of the original function. The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. One catch with `...` is that any arguments that appear after `...` on the argument list must be named explicitly and cannot be partially matched.
+
+## Scoping Rules
+**R is a lexically scoped language.** Lexical scoping in R means that the values of free variables are searched for in the environment in which the function was defined.
+
+An **environment** is a collection of (symbol, value) pairs, i.e. x is a symbol and 3.14 might be its value. Every environment has a parent environment; it is possible for an environment to have multiple “children” the only environment without a parent is the empty environment 
+
+A function + an environment = a **closure** or **function closure**.
+
+If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the parent environment. The search continues down the sequence of parent environments until we hit the top-level environment; this is usually the **global environment** (workspace) or the namespace of a package. After the top-level environment, the search continues down the search list until we hit the empty environment. If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.
+
+This function returns another function as its value.
+```{r}
+make.power <- function(n) {
+    pow <- function(x) {
+      x^n
+    }
+    pow
+}
+
+cube <- make.power(3)
+square <- make.power(2)
+```
+
+```{R}
+cube(3)
+square(3)
+```
+
+With lexical scoping the value of a free variable is looked up in the environment in which the function was defined. With dynamic scoping, the value of y is looked up in the environment from which the function was called (sometimes referred to as the calling environment).
+
+In R the calling environment is known as the **parent frame**.
+
+## Environment Functions
+`environment()` is the current environment.  
+`environment(f)` is the environment of function `f`  
+`globalenv()` or global environment, is the interactive workspace. The parent of the global environment is the last package that you attached with `library()` or `require()`.  
+`baseenv()` or base environment, is the environment of the base package. Its parent is 
+the empty environment.  
+`emptyenv()` or empty environment, is the ultimate ancestor of all environments, and the only environment without a parent. 
+`find()` returns where objects of a given name can be found.
+
+`search()` gives a list of attached packages and R objects  
+`ls(environment)` lists all the bindings in an environment  
+`ls.str(environment)` lists all the bindings in an environment  
+`get(x, position, environment)` returns the value of object x at a given position in the search or for a given environment (default is the global environment)  
+`rm(x, environment)` removes object x from the specified environment (default is the global environment)  
+`<<-` assigns a value to an object which it finds by looking through parent environments in turn (rather than looking in the current environment as <- does)  
+
+**An important thing to remember** is that to compare environments, you must use `identical()` not `==`
+
+## Consequences of Lexical Scoping
+In R, all objects must be stored in memory. All functions must carry a pointer to their respective defining environments, which could be anywhere.
+
+### *Optimization*
+*Lexical scoping is useful because optimization routines in R like optim, nlm, and optimize require you to pass a function whose argument is a vector of parameters (e.g. a log-likelihood). However, an object function might depend on a host of other things besides its parameters (like data). When writing software which does optimization, it may be desirable to allow the user to hold certain parameters fixed*
+
+## Dates and Times in R
+Dates are represented by the `Date` class. Times are represented by the `POSIXct` or the `POSIXlt` class. Dates are stored internally as the number of days since 1970-01-01. Times are stored internally as the number of seconds since 1970-01-01
+
+`Sys.time()` returns an absolute date-time value which can be converted to various time zones and may return different days.  
+`Sys.Date()` returns the current day in the current time zone  
+`weekdays(t)` gives the day of the week for time `t`   
+`months(t)` gives the month name for time `t` 
+`quarters(t)` gives the quarter number (“Q1”, “Q2”, “Q3”, or “Q4”) for time t  
+`as.Date(string)` coerces a character string into a date object  
+`as.POSIXlt(string)` coerces a character string to a time object  
+`as.POSIXct(string)` coerces a character string to a time object  
+`strptime(string)`coerces a character string to a time object  
+`difftime(x, y, units)` returns the time difference between x and y in the specified units  
+
+## Looping Functions
+`lapply(list, function)` takes a list as argument (or coerces argument to a list), applies the function to each element of the list  
+`sapply(list, function)` takes a list as argument, applies the function to each element of the list and simplifies the result if possible  
+`vapply(list, function, format)` takes a list as argument, applies the function to each element of the list and returns the result in the specified format (or throws an error)  
+`apply(array, function)` takes an array as argument and loops over the margins  
+`tapply(list, index, function)` applies a function to each cell of a ragged array, that is to each (non-empty) group of values given by a unique combination of the levels of certain factors (the index)  
+
+### mapply
+`mapply()` is a multivariate version of lapply, it can be used to apply a function to multiple sets of arguments. The number of arguments to the function must be the same as the number of objects provided to mapply. Mapply is particularly useful in vectorizing a function which would not normally return the correct result from a vector argument.
+
+```{r}
+rep(2, 4)
+mapply(rep, 2:3, 4:3)
+```
+
+### Matrix Column and Row Sums and Means
+`rowSums(x)` is equivalent to calling apply(x, 1, sum)  
+`rowMeans(x)` is equivalent to calling apply(x, 1, mean)  
+`colSums(x)` is equivalent to calling apply(x, 2, sum)  
+`colMeans(x)` is equivalent to calling apply(x, 2, mean)  
+
+All these functions can be applied to multidemsional arrays by using the dims argument to declare which dimension you wish to retain.
+
+### split
+`split(x, factors, drop)` takes a vector or other objects and splits it into groups determined by a factor or list of factors, the drop argument determines whether missing values should be dropped or not. A common idiom is `split` followed by an `lapply`.
+
+## Debugging
+**Message:** A generic notification/diagnostic message produced by the message function; execution of the function continues 
+
+**Warning:** An indication that something is wrong but not necessarily fatal; execution of the function continues; generated by the warning function 
+
+**Error:** An indication that a fatal problem has occurred; execution stops; produced by the stop function 
+
+**Condition:** A generic concept for indicating that something unexpected can occur; programmers can create their own conditions
+
+### Debugging Tools in R
+The primary tools for debugging functions in R are:
+
+**Traceback:** prints out the function call stack after an error occurs; does nothing if there’s no error.
+
+**Debug:** flags a function for “debug” mode which allows you to step through execution of a function one line at a time.
+
+**Browser:** suspends the execution of a function wherever it is called and puts the function in debug mode.
+
+**Trace:** allows you to insert debugging code into a function a specific places.
+
+**Recover:** allows you to modify the error behavior so that you can browse the function call stack.
+
+These are interactive tools specifically designed to allow you to pick through a function. There’s also the more blunt technique of inserting print/cat statements in the function.
+
+## Reshape
+
+```{r}
+
+```
+
+
+## Probability Distributions
+Each probability distribution in R has an r*** function (for "random"), a d*** function (for "density"), a p*** (for "probability"), and q*** (for "quantile"). All of the standard probability distributions are built into R, including exponential, chi-squared, gamma etc. Here are some examples:
+
+`rexp()` random number generation from an exponential distribution  
+`rchisq()` random number generation from a chi-squared distribution  
+`rgamma()` random number generation from a gamma distribution  
+
+When generating random numbers for simulations you wish to repeat always use the set.seed(x) function with the same value of x. Since the numbers generated are actually pseudo-random numbers this will ensure that you can generate the same set of random numbers in the future.
+
+### The Binomial Distribution
+Density, distribution function, quantile function and random generation for the binomial distribution with parameters size and prob.
+`dbinom(x, size, prob, log = FALSE)`
+`pbinom(q, size, prob, lower.tail = TRUE, log.p = FALSE)`
+`qbinom(p, size, prob, lower.tail = TRUE, log.p = FALSE)`
+`rbinom(n, size, prob)`
+
+### The Normal Distribution
+Density, distribution function, quantile function and random generation for the normal distribution with mean equal to mean and standard deviation equal to sd. 
+`dnorm(x, mean = 0, sd = 1, log = FALSE)`
+`pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)`
+`qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)`
+`rnorm(n, mean = 0, sd = 1)`
+
+### The Poisson Distribution
+Density, distribution function, quantile function and random generation for the Poisson distribution with parameter lambda. 
+`dpois(x, lambda, log = FALSE)`
+`ppois(q, lambda, lower.tail = TRUE, log.p = FALSE)`
+`qpois(p, lambda, lower.tail = TRUE, log.p = FALSE)`
+`rpois(n, lambda)`
+
+## Graphics
+`plot()` generic function for plotting of R objects  
+`par()` par can be used to set or query graphical parameters. Parameters can be set by specifying them as arguments to par in tag = value form, or by passing them as a list of tagged values.  
+`points()` points is a generic function to draw a sequence of points at the specified coordinates  
+`boxplot()` produces box-and-whisker plot(s) of the values  
+`hist()` computes a histogram of the data. If `plot = TRUE`, the resulting object of class "histogram" is plotted by `plot.histogram`, before it is returned 
+
+### Plot a Function
+The command `curve` can be used to plot a function given a set of input paramaters.
+```{r}
+theta = 20
+rho = 50
+x_n=150
+y_n=250
+
+hough <- function(x) {(-x*tan(theta) +(rho/sin(theta)))}
+pnl <-function(x) {(x*tan(theta) + y_n -(x_n*tan(theta)))}
+curve(hough, 0, 100)
+curve(pnl, 0, 100, add=TRUE)
+
+```
+
+###Make points on a plot invisible
+Using `type="n"` allows you to hide points on a plot. This can be useful if you want to emphasise a model fit for example.
+```{r}
+points1 <- c(1:25)
+points2 <- c(2:26)
+
+mdl <- lm(points1~points2)
+plot (points1, points2, type="n")
+abline(mdl, col="red")
+```
+
+
+## More Advanced Graphics Packages
+### lattice
+The `lattice` add-on package is an implementation of Trellis graphics for R. It is a powerful and elegant high-level data visualization system with an emphasis on multivariate data.
+
+### ggplot2
+`ggplot2` is a plotting system for R, based on the grammar of graphics, which tries to take the good parts of base and `lattice` graphics and none of the bad parts.
+
+```{r}
+library(ggplot2)
+ggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) + geom_point()
+```
+
+
+### ggvis
+`ggvis` is a data visualization package for R which lets you:
+
+-	Declaratively describe data graphics with a syntax similar in spirit to `ggplot2`.
+-	Create rich interactive graphics that you can play with locally in Rstudio or in your browser.
+-	Leverage Shiny’s infrastructure to publish interactive graphics usable from any browser (either within your company or to the world).
+
+The goal is to combine the best of R (e.g. every modelling function you can imagine) and the best of the web (everyone has a web browser). Data manipulation and transformation are done in R, and the graphics are rendered in a web browser, using Vega. For RStudio users, ggvis graphics display in a viewer panel, which is possible because RStudio is a web browser.
+
+## Formula Arguments
+Many R functions can take a "formula" argument, generally an expression with a tilde ("~") which indicates the relationship between the input variables. This allows you to enter something like x ~ y to plot the relationship between x on the x-axis and y on the y-axis.
+
+## Modelling
+
+###Categorization
+
+The `cut` function:
+
+```{r}
+
+s <- sample(1:5, 15, replace = TRUE)
+s
+
+cut(s, c(0:5), right = TRUE)
+cut(s, c(0:5), right = FALSE)
+
+```
+
+
+### Random Number Generation
+
+```{r}
+x <- sample(1:5, 50, replace = TRUE)
+y <- sample(1:5, 50, replace = TRUE)
+
+x
+y
+
+CrossTable(x, y)
+
+confusionMatrix(x, y)
+```
+
+### A Simulation Example: Generating Random Numbers From a Linear Model
+Suppose we want to simulate from the following linear model 
+
+$y = \beta_0 + \beta_1 x + \varepsilon$
+
+where $\varepsilon \sim \mathcal{N}(0, 2^2)$
+
+assuming $x \sim \mathcal{N}(0, 1^2), \beta_0 = 0.5$ and $\beta_1 = 2$
+
+
+
+```{r}
+set.seed(20)
+x <- rnorm(100)
+e <- rnorm(100, 0, 2)
+y <- 0.5 + 2 * x + e
+summary(y)
+plot(x, y)
+```
+
+## The R Profiler
+In general design code first then optimize. In order to optimize code you must first collect as much relevant data as you can.
+
+`system.time(expression)` takes an arbitrary R expression as input (can be wrapped in curly braces) and returns the amount of time taken to evaluate the expression. If there’s an error it gives the time until the error occurred.  It returns an object of class `proc_time` which is a numeric vector of length 5, containing the user, system, and total elapsed times for the process, and the cumulative sum of user and system times of any child processes spawned by it on which it has waited. Elapsed time represents “wall clock” time as experienced by a person waiting for the process to complete on their computer. It is usually but not always similar to the user time.
+
+`Rprof()` starts the R profiler to keep track of the function call stack at regularly sampled intervals and tabulate how much time is spent in each function. The default sampling interval is 0.02 seconds
+
+`summaryRprof()` summarizes the output from `Rprof()` tabulates the R profiler output and calculates how much time is spent in which function. There are two methods for normalizing the data:
+
+-	`by.total` divides the time spend in each function by the total run time
+-	`by.self` does the same but first subtracts out time spent in functions above in the call stack
+
+## File Handling
+
+```{r}
+
+fl <- file("file.txt", open = "w")
+cat("Some information", "and some more information.", file = fl, sep = "\n")
+close(fl)
+readLines("file.txt")
+unlink("file.txt") # Deletes file
+
+```
+
+## Redirecting Output
+
+```{r}
+
+cat("Some information\n", file="output1.txt", append = FALSE)
+
+capture.output(ls(), file="output2.txt", append = FALSE)
+
+sink("output3.txt", append = FALSE, type = c("output", "message"))
+x <- 5
+y <- 10
+cat(x * y)
+sink()
+
+```
+
+- `pdf` redirects graphical output to a PDF file.
+
+```{r }
+x <- sample(1:50, replace = TRUE)
+y <- sample(1:50, replace = TRUE)
+
+pdf(file = "output.pdf")
+plot(x, y)
+dev.off()
+```
+
+## Glossary
+`##` indicates the beginning of a comment (usually used in a function)  
+`&` checks for equality, if necessary the expression on the left is recycled across the expression on the right  
+`&&` checks for equality but the left operand is only evaluated with the first member of the right operand  
+`|` checks for equality, if necessary the expression on the left is recycled across the expression on the right  
+`||` checks for equality but the left operand is only evaluated with the first member of the right operand  
+`<-` The assignment operator  
+`all(x)` returns TRUE if all of the elements of x are TRUE  
+`any(x)` returns TRUE if any of the elements of x are TRUE  
+`c()` creates vectors of objects, e.g. c(1, 2, 3)  
+`class(object)` prints the vector of names of classes an object inherits from. Correspondingly, class<- sets the classes an object inherits from. Assigning NULL removes the class attribute  
+`dim(object)` retrieve or set the dimension of an object  
+`environment()` get, set, test for and create environments  
+`gl(n, k)` generates factors with n levels and k replications  
+`head(object)` returns the first parts of a vector, matrix, table, data frame or function  
+`hist(x, …)` computes a histogram of the given data values. If plot = TRUE, the resulting object of class "histogram" is plotted by plot.histogram, before it is returned.  
+`identical(x, y)` returns TRUE if x and y are identical  
+`install.packages(package)` downloads and installs packages from CRAN-like repositories or from local files.  
+`interaction(…)`  computes a factor which represents the interaction of the given factors  
+`invisible(x)` returns a (temporarily) invisible copy of an object (usually used in a function)  
+`isTRUE(x)` returns TRUE if the variable or statement x has the logical value TRUE  
+`LETTERS` is a predefined variable in R containing a vector of all 26 letters of the English alphabet  
+`library(package)` loads an add-on package (you might need to run `install.packages("package_name")`) first.  
+`ls()` lists the objects in an environment  
+`paste(…)` concatenates the arguments into a character vector  
+`print(x)` prints the variable x (explicit printing)  
+`replicate(n, expr, simplify = "array")` is a wrapper for the common use of sapply for repeated evaluation of an expression (which will usually involve random number generation)  
+`sample(x)` makes a sample of the specified size from the elements of x  
+`sample(x, y)` takes a sample of size y from the elements of x using either with or without replacement of previously sampled numbers  
+`seq(x, y, i)` creates a sequence of integers from x to y with intervals of i  
+`seq_along(x)` generates an integer sequence based on the length of the object x  
+`str(object, …)` compactly display the internal structure of an R object, a diagnostic function and an alternativ to summary (and to some extent, dput). Ideally, only one line for each ‘basic’ structure is displayed  
+`summary(object, …)` is a generic function used to produce result summaries of the results of various model   fitting functions. The function invokes particular methods which depend on the class of the first argument  
+`table()` uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels  
+`tail(object)` returns the last parts of a vector, matrix, table, data frame or function  
+`unclass(object)` returns (a copy of) its argument with its class attribute removed. (It is not allowed for objects which cannot be copied, namely environments and external pointers.)  
+`unique()` returns a vector with all duplicate elements removed  
+`View(object)` Invoke a spreadsheet-style data viewer on a matrix-like R object  
+`which(x)` returns the indices of the elements of x which are TRUE  
+`x:y` used to create a sequence of integers from x to y with intervals of 1   
+`xor(x, y)` returns TRUE if one argument returns FALSE and one argument is TRUE  
+
+
