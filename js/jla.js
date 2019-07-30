@@ -20,20 +20,7 @@ function loadIndexPage() {
     });
 }
 
-function loadPortfolioPage() {
-    $("#work").click(function () {
-        var workLinks = new Array();
-        workLinks[0] = "style.html";
-        workLinks[1] = "cpp.html";
-        window.location = workLinks[Math.floor(Math.random() * 2)];
-    });
-    $("#play").click(function () {
-        var playLinks = new Array();
-        playLinks[0] = "avatar.html";
-        playLinks[1] = "pictures.html";
-        window.location = playLinks[Math.floor(Math.random() * 2)];
-    });
-}
+function loadPortfolioPage() {}
 
 function loadStylePage() {
     $("#book").load("files/205-h.html");
