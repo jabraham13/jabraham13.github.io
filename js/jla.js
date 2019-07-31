@@ -90,8 +90,3 @@ function loadCPPPage() {
     $("#code").load("files/main.cpp");
     $.getScript( "js/prism.js");
 }
-
-function loadRPage() {
-    $("#code").load("files/R_Programming.Rmd");
-    $.getScript( "js/prism.js");
-}
