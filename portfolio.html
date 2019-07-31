@@ -19,7 +19,6 @@
                 -ms-user-select: none;
                 user-select: none;
             }
-
             .card-img-top, img.col-md-4 {
                 height: 225px;
                 object-fit: cover;
@@ -47,84 +46,63 @@
             </div>
         </section>
 
-        <div class="card m-5">
-            <a href="style.html" class="stretched-link"></a>
-            <div class="row">
-                <img class="col-md-4" src="images/cabin-31645_640.png" alt="Cabin in the woods" height="225"/>
-                <div class="col-md-7 card-body">
-                    <h3 class="card-title">CSS Styling</h3>
-                    <p class="card-text">
-                        A simple demonstration of how the reading experience can be
-                        enhanced through the application of CSS changes.
-                    </p>
+        <div class="container">
+            <div class="card mb-4">
+                <a href="style.html" class="stretched-link"></a>
+                <div class="row">
+                    <img class="col-md-4" src="images/cabin-31645_640.png" alt="Cabin in the woods" height="225"/>
+                    <div class="col-md-7 card-body">
+                        <h3 class="card-title">CSS Styling</h3>
+                        <p class="card-text">
+                            A simple demonstration of how the reading experience can be
+                            enhanced through the application of CSS changes.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
+
+            <div class="card-deck">
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top border-bottom" src="images/cpp.png" alt="C++ Notes" height="225"/>
+                    <div class="card-body">
+                        <a href="cpp.html" class="stretched-link"></a>
+                        <h3 class="card-title">C++ Notes</h3>
+                        <p class="card-text">
+                            A syntax refresher for 
+                            when I've been programming in another 
+                            language for a while.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top border-bottom" src="images/ggplot2.png" alt="ggplot graph" height="225"/>
+                    <a href="R.html" class="stretched-link"></a>
+                    <div class="card-body">
+                        <h3 class="card-title">Using R</h3>
+                        <p class="card-text">
+                            My reference notes for programming in R 
+                            (particularly useful when I want to remember how to use pgplot).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 shadow-sm">
+                    <a href="crib1.html" class="stretched-link"></a>
+                    <img class="card-img-top border-bottom" src="images/Text Retrieval and Search Engines Week 1 Reference.png" alt="Course Crib Sheet" height="225"/>
+                    <div class="card-body">
+                        <h3 class="card-title">Crib sheets for "Text Retrieval and Search Engines".</h3>
+                        <p class="card-text">
+                            Produced for the Coursera course 
+                            <a href="https://www.coursera.org/learn/text-retrieval">
+                                "Text Retrieval and Search Engines"</a>. 
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- card-deck -->
+
             <div class="row">
-
-                <!--
-                                <div class="col-md-4">
-                                    <div class="card mb-4 shadow-sm">
-                                        <img class="card-img-top" src="images/cabin-31645_640.png" alt="Cabin in the woods" height="225"/>
-                                        <div class="card-body">
-                                            <a href="style.html" class="stretched-link"></a>
-                                            <h3 class="card-title">CSS Styling</h3>
-                                            <p class="card-text">
-                                                A demonstration of how the reading experience can be
-                                                enhanced through the application of CSS changes.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                -->
-
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="images/cpp.png" alt="C++ Notes" height="225"/>
-                        <div class="card-body">
-                            <a href="cpp.html" class="stretched-link"></a>
-                            <h3 class="card-title">C++ Notes</h3>
-                            <p class="card-text">
-                                A syntax refresher for 
-                                when I've been programming in another 
-                                language for a while.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="images/ggplot2.png" alt="ggplot graph" height="225"/>
-                        <a href="R.html" class="stretched-link"></a>
-                        <div class="card-body">
-                            <h3 class="card-title">Using R</h3>
-                            <p class="card-text">
-                                My reference notes for programming in R 
-                                (particularly useful when I want to remember how to use pgplot).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                                    <a href="crib1.html" class="stretched-link"></a>
-                        <!--<img class="card-img-top" src="images/Text Retrieval and Search Engines Week 1 Reference.png" alt="Course Crib Sheet" height="225"/>-->
-                        <img class="card-img-top" src="images/Text Retrieval and Search Engines Week 1 Reference.png" alt="Course Crib Sheet" height="225"/>
-                        <div class="card-body">
-                            <h3 class="card-title">Crib sheets for "Text Retrieval and Search Engines".</h3>
-                            <p class="card-text">
-                                Produced for the Coursera course 
-                                <a href="https://www.coursera.org/learn/text-retrieval">
-                                    "Text Retrieval and Search Engines"</a>. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm under-construction">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#660066"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -228,8 +206,8 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- container -->
-        </div> <!-- row -->
+            </div> <!-- row -->
+        </div> <!-- container -->
 
         <footer class="text-center">
             <p class="font-weight-bold"><a href="#">Back to top</a></p>
