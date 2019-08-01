@@ -45,6 +45,10 @@ pre {
     font-size: 1.25em;
 }
 
+.custom-font-1 {
+    font-family: 'Amatic SC', fantasy;    
+}
+
 
 /*Bootstrap classes*/
 
