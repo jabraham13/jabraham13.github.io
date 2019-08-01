@@ -11,8 +11,6 @@
 
 html, body {
     height: 100%;
-    font-family: 'Amatic SC', fantasy;
-    font-size: 1.25em;
     background-color: #fcf7fc;
 }
 
@@ -39,12 +37,16 @@ pre {
     white-space: -o-pre-wrap;
     word-wrap: break-word;
     text-align: left;
-    font-family: 'Courier New'
+    font-family: 'Courier New', monospace;
 }
 
-.nav-link + .nav-link {
-    margin-left: 1rem;
+.custom-font {
+    font-family: 'Amatic SC', fantasy;
+    font-size: 1.25em;
 }
+
+
+/*Bootstrap classes*/
 
 .active {
     text-shadow: 2px 2px 10px #660066;
