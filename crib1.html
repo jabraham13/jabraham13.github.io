@@ -24,21 +24,22 @@
 
     <body>
 
-        <div class="p-3 text-center d-flex w-100 h-100 p-3 flex-column">
-
-
-            <div class="mb-auto btn-toolbar text-left" role="toolbar" aria-label="Toolbar with button groups">
-                <div id="btnGroupNav" class="btn-group mr-1 mr-md-3 my-1" role="group" aria-label="Font size group">
+        <header class="mb-auto">
+            <div class="mb-auto btn-toolbar text-left p-2" role="toolbar" aria-label="Toolbar with button groups">
+                <div id="btnGroupNav" class="btn-group mr-1 mr-md-3 my-1" role="group" aria-label="Navigation">
                     <button type=button class="btn btn-primary"><a href="index.html">Home</a></button>
                     <button type=button class="btn btn-primary"><a href="portfolio.html">Portfolio</a></button>
                 </div>
             </div>
+        </header>
 
+        <!--        <div class="p-3 text-center d-flex w-100 h-100 p-3 flex-column">-->
+        <div class="p-3 text-center">
 
             <h1 class="mb-3">Text Retrieval and Search Engines Notes<br>
-                Julie Abraham</h1>
-            
-            <div id="about" class="container w-75 text-justify">
+                by Julie Abraham</h1>
+
+            <div id="about" class="container col-md-10 text-justify">
                 <p>
                     I made these sheets 
                     publicly available and they were very well 
@@ -56,20 +57,20 @@
             </div>
 
             <h2 class="mt-3">Notes in PDF Format</h2>
-            <p>
-                <a class="btn-primary" href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 1 Reference.pdf">
-                    Week 1
-                </a>
-                <a class="btn-primary" href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 2 Reference.pdf">
-                    Week 2
-                </a>
-                <a class="btn-primary" href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 3 Reference.pdf">
-                    Week 3
-                </a>
-                <a class="btn-primary" href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 4 Reference.pdf">
-                    Week 4
-                </a>
-            </p>
+            <div class="btn-group mr-1 mr-md-3 mb-3" role="group" aria-label="File links">
+                <button class="btn-primary"><a href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 1 Reference.pdf">
+                        Week 1
+                    </a></button>
+                <button class="btn-primary"><a href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 2 Reference.pdf">
+                        Week 2
+                    </a></button>
+                <button class="btn-primary"><a href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 3 Reference.pdf">
+                        Week 3
+                    </a></button>
+                <button class="btn-primary"><a href="files/Text Retrieval and Search Engines/Text Retrieval and Search Engines Week 4 Reference.pdf">
+                        Week 4
+                    </a></button>
+            </div>
 
             <footer class="mt-auto">
                 <div class="text-center">
