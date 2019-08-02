@@ -3,6 +3,7 @@
 */
 
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
 
 @media (min-width: 48em) {
     .nav-brand {float: left;}
@@ -40,6 +41,16 @@ pre {
     word-wrap: break-word;
     text-align: left;
     font-family: 'Courier New', monospace;
+}
+
+.text-body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: lighter;
+    text-align: justify;
+}
+
+.text-body a {
+    color: blue;
 }
 
 /*Bootstrap classes*/
