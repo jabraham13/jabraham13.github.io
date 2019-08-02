@@ -12,6 +12,8 @@
 html, body {
     height: 100%;
     background-color: #fcf7fc;
+    font-family: 'Amatic SC', fantasy;
+    font-size: 1.25em;
 }
 
 a, a:hover {
@@ -39,16 +41,6 @@ pre {
     text-align: left;
     font-family: 'Courier New', monospace;
 }
-
-.custom-font {
-    font-family: 'Amatic SC', fantasy;
-    font-size: 1.25em;
-}
-
-.custom-font-1 {
-    font-family: 'Amatic SC', fantasy;    
-}
-
 
 /*Bootstrap classes*/
 
